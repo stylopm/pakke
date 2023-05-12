@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InvalidFormField } from '@helpers/invalidFormField'
 import { Router } from '@angular/router';
+import { UsersService } from '@services/users.service';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,9 +13,11 @@ export class LoginComponent {
   userForm: FormGroup;
   invalidFormField = InvalidFormField;
   constructor(
-    private fb: FormBuilder, 
-    private router: Router
-    ) {
+    private fb: FormBuilder,
+    private us: UsersService,
+    private router: Router,
+    private toastr: ToastrService,
+  ) {
     this.createForm();
   }
   private createForm(): void {
@@ -24,15 +29,21 @@ export class LoginComponent {
           Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
         ],
       ],
-      pass: [, [Validators.required]]
+      password: [, [Validators.required]]
     });
   }
   save() {
-    alert("Dispara")
-    console.log(this.userForm.value);
+    this.us.login(this.userForm.value).subscribe((res) => {
+      if (res['success']) {
+        this.toastr.success('Bienvenido');
+        this.router.navigate(['panel']);
+      } else {
+        this.toastr.warning(res['msg']);
+      }
+    })
   }
 
-  goToPageRegistre(){
+  goToPageRegistre() {
     this.router.navigate(['registre']);
   }
 }

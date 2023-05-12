@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ValidationsService } from '@helpers/validations';
 import { InvalidFormField } from '@helpers/invalidFormField';
 import { UsersService}  from '@services/users.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +16,9 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
      private vs: ValidationsService,
-     private us: UsersService
+     private us: UsersService,
+     private toastr: ToastrService,
+     private router: Router
      ) {
     this.createForm();
   }
@@ -35,11 +39,15 @@ export class RegisterComponent {
     );
   }
   save() {
-    console.log(this.userForm.value);
     this.us.logout(this.userForm.value).subscribe((res)=>{
-        console.log(res);
+        if(res['success']){
+          this.toastr.success(res['msg']);
+          this.router.navigate(['panel']);
+        } else {
+          this.toastr.warning(res['msg']);
+        }
     })
-  }
+  }registre
 
   get pass2NoValido() {
     return (this.userForm.get('password').value === this.userForm.get('passwordConfirm').value) ? false : true;

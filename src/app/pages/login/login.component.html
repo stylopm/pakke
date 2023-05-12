@@ -17,9 +17,9 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Password</label>
                 <div class="col">
-                    <input class="form-control" [class.is-invalid]="invalidFormField(userForm, 'pass')"
-                        formControlName="pass" placeholder="Password" type="password" />
-                    <small class="text-danger" *ngIf="invalidFormField(userForm, 'email')">
+                    <input class="form-control" [class.is-invalid]="invalidFormField(userForm, 'password')"
+                        formControlName="password" placeholder="Password" type="password" />
+                    <small class="text-danger" *ngIf="invalidFormField(userForm, 'password')">
                         Campo requerido
                     </small>
                 </div>
@@ -27,7 +27,7 @@
             <div class="form-group row">
                 <button [disabled]="userForm.invalid || userForm.status ==='PENDING'" type="button"
                 class="btn btn-p btn-success btn-block" (click)="save()">
-                Guardar
+                Ingresar
             </button>
                 <button type="button" class="btn btn-p btn-secondary btn-block" (click)="goToPageRegistre()">
                     Registrarse

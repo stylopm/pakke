@@ -12,4 +12,8 @@ export class UsersService {
   logout(data){
     return this.http.post(`${this.url}/Users/signup`, data);
   }
+
+  login(data){
+    return this.http.post(`${this.url}/Users/login`, data);
+  }
 }
