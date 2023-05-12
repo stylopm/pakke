@@ -33,7 +33,11 @@
       "@helpers/*": [
         "./src/app/helpers/*"
       ],
+      "@env/*": [
+        "./src/environments/*"
+      ],
     }
+    
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

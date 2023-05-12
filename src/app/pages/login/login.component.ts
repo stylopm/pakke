@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray, ValidationErrors } from '@angular/forms';
-import { ValidationsService } from '@helpers/validations';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InvalidFormField } from '@helpers/invalidFormField'
 import { Router } from '@angular/router';
 @Component({
@@ -25,8 +24,7 @@ export class LoginComponent {
           Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
         ],
       ],
-      pass: [, [Validators.required]],
-      passConfirm: [, [Validators.required]],
+      pass: [, [Validators.required]]
     });
   }
   save() {

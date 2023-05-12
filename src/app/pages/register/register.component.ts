@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ValidationsService } from '@helpers/validations';
-import { InvalidFormField } from '@helpers/invalidFormField'
+import { InvalidFormField } from '@helpers/invalidFormField';
+import { UsersService}  from '@services/users.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,11 @@ import { InvalidFormField } from '@helpers/invalidFormField'
 export class RegisterComponent {
   userForm: FormGroup;
   invalidFormField = InvalidFormField;
-  constructor(private fb: FormBuilder, private vs: ValidationsService) {
+  constructor(
+    private fb: FormBuilder,
+     private vs: ValidationsService,
+     private us: UsersService
+     ) {
     this.createForm();
   }
   private createForm(): void {
@@ -22,20 +27,21 @@ export class RegisterComponent {
           Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
         ],
       ],
-      pass: [, [Validators.required]],
-      passConfirm: [, [Validators.required]],
+      password: [, [Validators.required]],
+      passwordConfirm: [, [Validators.required]],
     }, {
-      validators: this.vs.equalPassword('pass', 'passConfirm')
+      validators: this.vs.equalPassword('password', 'passwordConfirm')
     }
     );
   }
   save() {
-
-    alert("Dispara")
     console.log(this.userForm.value);
+    this.us.logout(this.userForm.value).subscribe((res)=>{
+        console.log(res);
+    })
   }
 
   get pass2NoValido() {
-    return (this.userForm.get('pass').value === this.userForm.get('passConfirm').value) ? false : true;
+    return (this.userForm.get('password').value === this.userForm.get('passwordConfirm').value) ? false : true;
   }
 }

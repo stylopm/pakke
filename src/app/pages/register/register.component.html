@@ -17,9 +17,9 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Password</label>
                 <div class="col">
-                    <input class="form-control" [class.is-invalid]="invalidFormField(userForm, 'pass')"
-                        formControlName="pass" placeholder="Password" type="password" />
-                    <small class="text-danger" *ngIf="invalidFormField(userForm, 'email')">
+                    <input class="form-control" [class.is-invalid]="invalidFormField(userForm, 'password')"
+                        formControlName="password" placeholder="Password" type="password" />
+                    <small class="text-danger" *ngIf="invalidFormField(userForm, 'password')">
                         Campo requerido
                     </small>
                 </div>
@@ -28,9 +28,9 @@
                 <label class="col-2 col-form-label">Password confirmar</label>
                 <div class="col">
                     <input [class.is-invalid]="
-          invalidFormField(userForm, 'passConfirm')" class="form-control" formControlName="passConfirm"
-                        placeholder="Password confirmar" type="password" />
-                    <small *ngIf="invalidFormField(userForm, 'passConfirm')" class="text-danger">
+          invalidFormField(userForm, 'passwordConfirm')" class="form-control" formControlName="passwordConfirm"
+                        placeholder="Confirmar password" type="password" />
+                    <small *ngIf="invalidFormField(userForm, 'passwordConfirm')" class="text-danger">
                         Campo requerido
                     </small>
                     <small *ngIf="pass2NoValido" class="text-danger">
