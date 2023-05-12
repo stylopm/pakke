@@ -1,1 +1,60 @@
-<p>login works!</p>
+<h4>Formularios <small> reactivos </small></h4>
+<hr />
+<form autocomplete="off" [formGroup]="userForm" (ngSubmit)="save()">
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Correo</label>
+        <div class="col">
+            <input class="form-control" [class.is-invalid]="invalidFormField(userForm, 'email')" formControlName="email"
+                type="email" placeholder="Correo electrónico" />
+            <small class="text-danger" *ngIf="invalidFormField(userForm, 'email')">
+                Campo requerido
+            </small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Password</label>
+        <div class="col">
+            <input class="form-control" [class.is-invalid]="invalidFormField(userForm, 'pass')" formControlName="pass"
+                placeholder="Password" type="password" />
+            <small class="text-danger" *ngIf="invalidFormField(userForm, 'email')">
+                Campo requerido
+            </small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Password confirmar</label>
+        <div class="col">
+            <input [class.is-invalid]="
+          invalidFormField(userForm, 'passConfirm')" class="form-control" formControlName="passConfirm"
+                placeholder="Password confirmar" type="password" />
+            <small *ngIf="invalidFormField(userForm, 'passConfirm')" class="text-danger">
+                Campo requerido
+            </small>
+            <small *ngIf="pass2NoValido" class="text-danger">
+                Las contraseñas no son validas
+              </small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col">
+            <button type="submit" [disabled]="userForm.invalid || userForm.status ==='PENDING'"
+                class="btn btn-outline-primary btn-block">
+                Guardar
+            </button>
+        </div>
+    </div>
+</form>
+<hr />
+<pre>
+    Validacion del formulario
+    {{ userForm.valid }}
+</pre>
+<pre>
+    Estatus del formulario
+    {{ userForm.status }}
+</pre>
+<pre>
+    Valores del formulario
+    {{ userForm.value | json }}
+</pre>
