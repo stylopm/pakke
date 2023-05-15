@@ -28,3 +28,8 @@
 .btn-p {
     padding: 20px;
 }
+
+.align-footer{
+    display: flex;
+    align-content: flex-end;
+}

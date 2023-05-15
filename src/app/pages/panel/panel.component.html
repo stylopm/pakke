@@ -13,11 +13,26 @@
       <th scope="row">{{i+1}}</th>
       <td>{{item.guide}}</td>
       <td>{{item.package}}</td>
-      <td> <label class="btn btn-secondary">
-          <input type="radio" name="options" id="option2" autocomplete="off"> 
+      <td>
+        <button type="button" class="btn btn-info">
           {{item.status}}
-        </label></td>
-        <td>{{item.updatedate | date: 'MM/dd/yyyy HH:mm' }}</td>
+        </button>
+      </td>
+      <td>{{item.updatedate | date: 'MM/dd/yyyy HH:mm' }}</td>
     </tr>
   </tbody>
+  <tfoot>
+    <tr >
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> 
+        <div class="align-footer">
+          <button (click)="loadPackages()" type="button" class="btn btn-success">Actualizar</button>
+        </div>
+      </td>
+    </tr>
+  </tfoot>
 </table>
+<div>

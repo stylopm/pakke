@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PackagesService } from '@services/packages.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-panel',
@@ -10,6 +11,7 @@ export class PanelComponent {
   data: any
   constructor(
     private ps: PackagesService,
+    private toastr: ToastrService,
   ) {
     this.loadPackages()  
   }
@@ -17,6 +19,8 @@ export class PanelComponent {
   loadPackages(){
     this.ps.list().subscribe((res) => {
       this.data= res['data']
+      this.toastr.success('Se cargo exitosamente la información');
     })
   }
 }
+
