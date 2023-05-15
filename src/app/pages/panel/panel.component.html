@@ -1,20 +1,23 @@
 <table class="table ">
-    <thead class="table-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Guia</th>
-        <th scope="col">Paqueteria</th>
-        <th scope="col">Estatus</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of data; index as i">
-        <th scope="row">{{i+1}}</th>
-        <td>{{item.guide}}</td>
-        <td>{{item.package}}</td>
-        <td>  <label class="btn btn-secondary">
-            <input type="radio" name="options" id="option2" autocomplete="off"> Estatus
-          </label></td>
-      </tr>
-    </tbody>
-  </table>
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Guia</th>
+      <th scope="col">Paqueteria</th>
+      <th scope="col">Estatus</th>
+      <th scope="col">Fecha de actualización</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data; index as i">
+      <th scope="row">{{i+1}}</th>
+      <td>{{item.guide}}</td>
+      <td>{{item.package}}</td>
+      <td> <label class="btn btn-secondary">
+          <input type="radio" name="options" id="option2" autocomplete="off"> 
+          {{item.status}}
+        </label></td>
+        <td>{{item.updatedate | date: 'MM/dd/yyyy HH:mm' }}</td>
+    </tr>
+  </tbody>
+</table>
