@@ -6,7 +6,7 @@ const routes: Routes = [{ path: '', component: PanelComponent }];
 
 @NgModule({
   declarations: [
-    PanelComponent
+    PanelComponent,
   ],
   imports: [
     CommonModule,

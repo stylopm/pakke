@@ -14,7 +14,8 @@
       <td>{{item.guide}}</td>
       <td>{{item.package}}</td>
       <td>
-        <button type="button" class="btn btn-info">
+        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          (click)="loadParcelTracking(item.shipping_id, item.guide)">
           {{item.status}}
         </button>
       </td>
@@ -22,12 +23,12 @@
     </tr>
   </tbody>
   <tfoot>
-    <tr >
+    <tr>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> 
+      <td>
         <div class="align-footer">
           <button (click)="loadPackages()" type="button" class="btn btn-success">Actualizar</button>
         </div>
@@ -35,4 +36,39 @@
     </tr>
   </tfoot>
 </table>
-<div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria- labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="exampleModalLabel">{{labelPakage}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body ">
+          <table class="table ">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Detalle</th>
+                <th scope="col">Ubicación</th>
+                <th scope="col">Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of pakage; index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.Details}}</td>
+                <td>
+                  
+                  <div *ngIf="item.Location===null">No hay datos</div>
+                  <div *ngIf="item.Location!==null">{{item.Location.City}} - {{item.Location.State}} - {{item.Location.ZipCode}}</div>
+                  
+                </td>
+                <td>{{item.Date | date: 'MM/dd/yyyy HH:mm' }}</td>
+              </tr>
+            </tbody>
+          </table>
+          
+        </div>
+      </div>
+    </div>
