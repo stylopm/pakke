@@ -14,9 +14,9 @@
       <td>{{item.guide}}</td>
       <td>{{item.package}}</td>
       <td>
-        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal"
           (click)="loadParcelTracking(item.shipping_id, item.guide)">
-          {{item.status}}
+          {{item.status | statusP}}
         </button>
       </td>
       <td>{{item.updatedate | date: 'MM/dd/yyyy HH:mm' }}</td>

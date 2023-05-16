@@ -5,10 +5,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { StatusPackagePipe } from './helpers/pipe/status-package.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
+    // StatusPackagePipe,
     
   ],
   imports: [
